@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Jeu de Nim</title>
+  </head>
+  <body>
+    <h1>Jeu de Nim</h1>
+    <p>Il y a 10 bâtons.</p>
+    <p>Chaque tour, vous pouvez en prendre entre 1 et 3.</p>
+    <p>Le joueur qui prend le dernier bâton gagne.</p>
+    <p id="sticks">10</p>
+    <button id="takeOne">Prendre 1</button>
+    <button id="takeTwo">Prendre 2</button>
+    <button id="takeThree">Prendre 3</button>
+    <script>
+      const sticksLeftEl = document.querySelector("#sticks");
+      const takeOneBtn = document.querySelector("#takeOne");
+      const takeTwoBtn = document.querySelector("#takeTwo");
+      const takeThreeBtn = document.querySelector("#takeThree");
+      let sticksLeft = 10;
+
+      function updateSticksLeft() {
+        sticksLeftEl.innerText = sticksLeft;
+      }
+
+      takeOneBtn.addEventListener("click", function() {
+        sticksLeft -= 1;
+        updateSticksLeft();
+        checkForWin();
+      });
+
+      takeTwoBtn.addEventListener("click", function() {
+        sticksLeft -= 2;
+        updateSticksLeft();
+        checkForWin();
+      });
+
+      takeThreeBtn.addEventListener("click", function() {
+        sticksLeft -= 3;
+        updateSticksLeft();
+        checkForWin();
+      });
+
+      function checkForWin() {
+        if (sticksLeft <= 0) {
+          alert("Vous avez gagné !");
+          takeOneBtn.disabled = true;
+          takeTwoBtn.disabled = true;
+          takeThreeBtn.disabled = true;
+        }
+      }
+    </script>
+  </body>
+</html>
